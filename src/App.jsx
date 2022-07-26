@@ -31,12 +31,9 @@ function App() {
     spotLight.position.set(0, 64, 32);
     scene.add(spotLight);
 
-    const cubeTexture = new THREE.TextureLoader().load('./uni.jpg');
-
     const boxGeometry = new THREE.BoxGeometry(30, 15, 10);
-    const boxMaterial = new THREE.MeshNormalMaterial({
-      map: cubeTexture,
-    });
+    const cubeTexture = new THREE.TextureLoader().load('./assets/uni.jpg' );
+    const boxMaterial = new THREE.MeshBasicMaterial( { map: cubeTexture } );
     const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
     scene.add(boxMesh);
 
