@@ -44,8 +44,8 @@ function App() {
       pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
     }
     const animate = () => {
-      boxMesh.rotation.x += 0.001;
-      boxMesh.rotation.y += 0.001;
+      sphereMesh.rotation.x += 0.001;
+      sphereMesh.rotation.y += 0.001;
       controls.update();
       renderer.render(scene, camera);
       window.requestAnimationFrame(animate);
