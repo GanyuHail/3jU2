@@ -33,6 +33,8 @@ function App() {
 
     const sphereGeometry = new THREE.SphereGeometry(12, 64, 32);
     const cubeTexture = new THREE.TextureLoader().load( 'https://raw.githubusercontent.com/GanyuHail/3dUni/af0410ab94f43f47c605838cd9db4d380639afb7/src/assets/uni.jpg' );
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.repeat.set( 1, 1 );
     const boxMaterial = new THREE.MeshBasicMaterial( { map: cubeTexture } );
     const boxMesh = new THREE.Mesh(sphereGeometry, boxMaterial);
     scene.add(boxMesh);
