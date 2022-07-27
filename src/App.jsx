@@ -32,7 +32,7 @@ function App() {
     scene.add(spotLight);
 
     const boxGeometry = new THREE.BoxGeometry(30, 15, 10);
-    const cubeTexture = new THREE.TextureLoader().load( 'https://github.com/GanyuHail/3dUni/blob/main/src/assets/paint.jpg' );
+    const cubeTexture = new THREE.TextureLoader().load( './github.com/GanyuHail/3dUni/blob/main/src/assets/paint.jpg' );
     const boxMaterial = new THREE.MeshBasicMaterial( { map: cubeTexture } );
     const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
     scene.add(boxMesh);
