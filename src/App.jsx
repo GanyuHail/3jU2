@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import vertexShader from './shaders/vertex.glsl';
+import fragmentShader from './shaders/fragment.glsl';
+import atmosphereVertexShader from './shaders/atmosphereVertex.glsl';
+import atmosphereFragmentShader from './shaders/atmosphereFragment.glsl';
 
 function App() {
   useEffect(() => {
@@ -23,19 +27,41 @@ function App() {
     document.body.appendChild(renderer.domElement);
 
     const ambientLight = new THREE.AmbientLight(0xFFC0CB, 0.5);
-    ambientLight.castShadow = true; 
+    ambientLight.castShadow = true;
     scene.add(ambientLight);
 
     const spotLight = new THREE.SpotLight(0xffffff, 1);
-    spotLight.castShadow = true; 
+    spotLight.castShadow = true;
     spotLight.position.set(0, 64, 32);
     scene.add(spotLight);
 
-    const sphereGeometry = new THREE.SphereGeometry(12, 64, 32);
-    const sphereTexture = new THREE.TextureLoader().load( 'https://raw.githubusercontent.com/GanyuHail/3dUni/main/src/assets/uniEq.jpg' );
-    const sphereMaterial = new THREE.MeshBasicMaterial( { map: sphereTexture } );
-    const sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
-    scene.add(sphereMesh);
+    const sphere = new THREE.Mesh(
+      new THREE.SphereGeometry(12, 64, 32),
+      new THREE.ShaderMaterial({
+        vertexShader,
+        fragmentShader,
+        uniforms: {
+          sphereTexture: {
+            value: new THREE.TextureLoader().load('https://raw.githubusercontent.com/GanyuHail/3dUni/main/src/assets/uniEq.jpg')
+          }
+        }
+      })
+    )
+
+    scene.add(sphere);
+
+    const atmosphere = new THREE.Mesh(
+      new THREE.SphereGeometry(12, 64, 32),
+      new THREE.ShaderMaterial({
+        vertexShader: atmosphereVertexShader,
+        fragmentShader: atmosphereFragmentShader,
+        blending: THREE.AdditiveBlending,
+        side: THREE.BackSide
+      })
+    )
+
+    atmosphere.scale.set(1.1, 1.1, 1.1)
+    scene.add(atmosphere);
 
     const controls = new OrbitControls(camera, renderer.domElement);
 
