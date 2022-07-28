@@ -70,8 +70,8 @@ function App() {
       pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
     }
     const animate = () => {
-      SphereGeometry.rotation.x += 0.001;
-      SphereGeometry.rotation.y += 0.001;
+      sphere.rotation.x += 0.001;
+      sphere.rotation.y += 0.001;
       controls.update();
       renderer.render(scene, camera);
       window.requestAnimationFrame(animate);
