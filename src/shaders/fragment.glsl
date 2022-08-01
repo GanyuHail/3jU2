@@ -1,4 +1,4 @@
-uniform sampler2D sphereTexture;
+uniform sampler2D sphereTex;
 
 varying vec2 vertexUV;
 varying vec2 vertexNormal;

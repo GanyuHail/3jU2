@@ -41,8 +41,8 @@ function App() {
         vertexShader,
         fragmentShader,
         uniforms: {
-          sphereTexture: {
-            value: new THREE.TextureLoader().load('https://raw.githubusercontent.com/GanyuHail/3dUni/main/src/assets/uniEq.jpg')
+          sphereTex: {
+            value: new THREE.TextureLoader().load('https://raw.githubusercontent.com/GanyuHail/3jU2/main/src/assets/uni.jpg')
           }
         }
       })
